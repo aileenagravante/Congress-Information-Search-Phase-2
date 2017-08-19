@@ -1,6 +1,9 @@
 <?php
   if (isset($_SERVER['HTTP_ORIGIN'])) {
-    header("Access-Control-Allow-Origin: http://aileenagravante.com");
+    $http_origin = $_SERVER['HTTP_ORIGIN'];
+    if($http_origin == "http://aileenagravante.com" || $http_origin == "http://www.aileenagravante.com") {
+        header("Access-Control-Allow-Origin: $http_origin");
+    }
     header("Access-Control-Allow-Methods: GET");
     header("Access-Control-Allow-Headers: X-Requested-With");
   }
