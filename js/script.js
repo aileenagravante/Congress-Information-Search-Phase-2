@@ -6,6 +6,7 @@
 var myApp = angular.module('myApp', ['angularUtils.directives.dirPagination']);
 
 var url = 'http://aileenagravante.com/congress-information-search/spa/scripts/congress.php';
+// var url = 'http://localhost/congress-spa-final.php';
 
 // Anything inside the scope variable is available inside the controller
 function MyController($scope, $http) {
@@ -102,7 +103,7 @@ function MyController($scope, $http) {
       method: 'GET',
       url: (url + "?database=bills&keyword=" + legislatorID)
       }).then(function successCallback(response) {
-        $scope.selectedLegislatorBills = response.data.results;
+        $scope.selectedLegislatorBills = response.data.results[0].bills;
       }, function errorCallback(response) {
         error = (error + " Error with Selected Legislator API call");
     });

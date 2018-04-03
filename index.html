@@ -430,32 +430,7 @@
                     <div class="col-md-6"><!-- right results parent column -->
                       <div class="row"><!-- right results top child header row -->
                         <div class="col-xs-12"><!-- right results top child header column -->
-                          <span class="table-header">Committees</span>
-                        </div><!-- right results top child header column -->
-                      </div><!-- right results top child header row -->
-                      <div class="row"><!-- right results top child table row -->
-                        <div class="col-xs-12"><!-- right results top child column -->
-                          <table class="table table-condensed"><!-- top right table for legislator committees -->
-                            <thead>
-                              <tr>
-                                <th>Chamber</th>
-                                <th>Committee ID</th>
-                                <th>Name</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr ng-repeat="committee in selectedLegislatorCommittees | orderBy: 'committee_id'">
-                                <td class="text-capitalize">{{ committee.chamber }}</td>
-                                <td>{{ committee.committee_id }}</td>
-                                <td>{{ committee.name }}</td>
-                              </tr>
-                            </tbody>
-                          </table><!-- top right table for legislator committees -->
-                        </div><!-- right results top child column -->
-                      </div><!-- right results top child table row -->
-                      <div class="row"><!-- right results top child header row -->
-                        <div class="col-xs-12"><!-- right results top child header column -->
-                          <span class="table-header">Bills</span>
+                          <span class="table-header">Bill Cosponsorships</span>
                         </div><!-- right results top child header column -->
                       </div><!-- right results top child header row -->
                       <div class="row"><!-- right results bottom child table row -->
@@ -465,21 +440,15 @@
                               <tr>
                                 <th>Bill ID</th>
                                 <th>Title</th>
-                                <th class="hidden-xs">Chamber</th>
-                                <th class="hidden-xs">Bill Type</th>
-                                <th class="hidden-xs">Congress</th>
-                                <th>Link</th>
+                                <th>PDF</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr ng-repeat="bill in selectedLegislatorBills | orderBy: 'bill_id'">
-                                <td class="text-uppercase">{{ bill.bill_id }}</td>
-                                <td>{{ bill.official_title }}</td>
-                                <td class="text-capitalize hidden-xs">{{ bill.chamber }}</td>
-                                <td class="text-uppercase hidden-xs">{{ bill.bill_type }}</td>
-                                <td class="hidden-xs">{{ bill.congress }}</td>
-                                <td ng-if="bill.last_version.urls.pdf === undefined">N.A</td>
-                                <td ng-if="bill.last_version.urls.pdf != undefined"><a href="{{ bill.last_version.urls.pdf }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></td>
+                                <td class="text-uppercase"><a href="{{ bill.govtrack_url }}" target="_blank">{{ bill.bill_id }}</a></td>
+                                <td>{{ bill.title }}</td>
+                                <td ng-if="bill.gpo_pdf_uri === null">N.A</td>
+                                <td ng-if="bill.gpo_pdf_uri != null"><a href="{{ bill.gpo_pdf_uri }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></td>
                               </tr>
                             </tbody>
                           </table><!-- bottom right table for legislator bills -->
@@ -1242,32 +1211,7 @@
                       <div class="col-md-6"><!-- right results parent column -->
                         <div class="row"><!-- right results top child header row -->
                           <div class="col-xs-12"><!-- right results top child header column -->
-                            <span class="table-header">Committees</span>
-                          </div><!-- right results top child header column -->
-                        </div><!-- right results top child header row -->
-                        <div class="row"><!-- right results top child table row -->
-                          <div class="col-xs-12"><!-- right results top child column -->
-                            <table class="table table-condensed"><!-- top right table for legislator committees -->
-                              <thead>
-                                <tr>
-                                  <th>Chamber</th>
-                                  <th>Committee ID</th>
-                                  <th>Name</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr ng-repeat="committee in selectedLegislatorCommittees | orderBy: 'committee_id'">
-                                  <td class="text-capitalize">{{ committee.chamber }}</td>
-                                  <td>{{ committee.committee_id }}</td>
-                                  <td>{{ committee.name }}</td>
-                                </tr>
-                              </tbody>
-                            </table><!-- top right table for legislator committees -->
-                          </div><!-- right results top child column -->
-                        </div><!-- right results top child table row -->
-                        <div class="row"><!-- right results top child header row -->
-                          <div class="col-xs-12"><!-- right results top child header column -->
-                            <span class="table-header">Bills</span>
+                            <span class="table-header">Bill Cosponsorships</span>
                           </div><!-- right results top child header column -->
                         </div><!-- right results top child header row -->
                         <div class="row"><!-- right results bottom child table row -->
@@ -1277,21 +1221,15 @@
                                 <tr>
                                   <th>Bill ID</th>
                                   <th>Title</th>
-                                  <th class="hidden-xs">Chamber</th>
-                                  <th class="hidden-xs">Bill Type</th>
-                                  <th class="hidden-xs">Congress</th>
-                                  <th>Link</th>
+                                  <th>PDF</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr ng-repeat="bill in selectedLegislatorBills | orderBy: 'bill_id'">
-                                  <td class="text-uppercase">{{ bill.bill_id }}</td>
-                                  <td>{{ bill.official_title }}</td>
-                                  <td class="text-capitalize hidden-xs">{{ bill.chamber }}</td>
-                                  <td class="text-uppercase hidden-xs">{{ bill.bill_type }}</td>
-                                  <td class="hidden-xs">{{ bill.congress }}</td>
-                                  <td ng-if="bill.last_version.urls.pdf === undefined">N.A</td>
-                                  <td ng-if="bill.last_version.urls.pdf != undefined"><a href="{{ bill.last_version.urls.pdf }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></td>
+                                  <td class="text-uppercase"><a href="{{ bill.govtrack_url }}" target="_blank">{{ bill.bill_id }}</a></td>
+                                  <td>{{ bill.title }}</td>
+                                  <td ng-if="bill.gpo_pdf_uri === null">N.A</td>
+                                  <td ng-if="bill.gpo_pdf_uri != null"><a href="{{ bill.gpo_pdf_uri }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></td>
                                 </tr>
                               </tbody>
                             </table><!-- bottom right table for legislator bills -->
